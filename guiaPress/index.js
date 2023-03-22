@@ -6,8 +6,15 @@ const categoriesControler = require('./categories/categoriesController')
 const articlesController = require('./articles/articlesController')
 const Article = require('./articles/Article')
 const Category = require('./categories/Category')
+const usersController = require('./users/UserControler')
+const User = require('./users/User')
+const session = require('express-session')
 
 
+
+app.use(session({
+    secret: 'qualquercoisa', cookie: { maxAge: 30000 }
+}))
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -27,13 +34,24 @@ connection
 
 app.use('/', categoriesControler)
 app.use('/', articlesController)
+app.use('/', usersController)
+
+
+app.get('/session', (req, res) => {
+    
+})
+
+app.get('/leitura', (req, res) => {
+
+})
 
 
 app.get('/', (req, res) => {
     Article.findAll({
         order: [
             ['id', 'DESC']
-        ]
+        ],
+        limit: 4
     }).then(articles => {
         Category.findAll().then(categories => {
             res.render('index', {articles: articles, categories: categories})

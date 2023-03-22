@@ -19,17 +19,23 @@
 </div>
         <hr>
         <% articles.forEach(article => { %>
-<div class="card mt-4">
-    <div class="card-header">
-        <h2><%= article.title %></h2>
-    </div>
-    <div class="card-body">
-        <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
-    </div>
-    <br>
-</div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+                </div>
+                <br>
+            </div>
         <% }) %>
-
+        <br>
+        <div class="row">
+            <div class="col col-12">
+                <a style="float: right" class="btn btn-primary" href="/articles/page/2">Next >>></a>
+            </div>
+        </div>
+        <br>
     </div>
 </body>
 
