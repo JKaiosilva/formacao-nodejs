@@ -44,8 +44,14 @@ function pegarUsuarios(){
 }
 
 async function principal(){
-    var usuarios = await pegarUsuarios()
-    console.log(usuarios)
+    var id = await pegarId();
+    var email = await buscarEmailNoDb(id)
+    try{
+        await enviarEmail('ola como vai', email)
+        console.log('email enviado' + email)
+    }catch(err){
+        console.log(err)
+    }
 }
 
 principal()
